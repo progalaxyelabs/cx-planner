@@ -1,0 +1,110 @@
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    margin: 0;
+    height: 100%;
+    font-size: 16px;
+}
+
+#main {
+    padding: 12px;
+}
+
+.node {
+    margin: 0 auto;
+    padding: 0 4px;
+    /* border: 1px solid blue; */
+}
+
+.children {
+    display: flex;
+    flex-wrap: nowrap;
+    padding: 0 8px;
+    padding: 0;
+    /* border: 1px solid brown; */
+}
+
+.mobile-window {
+    width: 200px;
+    height: 320px;
+    border: 1px solid #aaa;
+    border-radius: 4px;
+
+    margin: 12px auto 0 auto;
+
+    display: flex;
+    flex-direction: column;
+}
+
+.mobile-window.active {
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
+}
+
+.mobile-view {
+    flex: 1;
+}
+
+.mobile-buttons {
+    flex: 0 0 36px;
+    height: 36px;
+    padding: 4px;
+    border-top: 1px solid #aaa;
+    display: flex;
+    align-items: center;
+}
+
+.mobile-button {
+    line-height: 1;
+    background: #eee;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+}
+
+.message-window {
+    width: 200px;
+    min-height: 50px;
+    border: 1px solid #aaa;
+    border-radius: 4px;
+
+    margin: 0 auto 12px auto;
+
+    padding: 8px;
+    font-family: Verdana, Geneva, sans-serif;
+    font-size: 0.8rem;
+    line-height: 1.5;
+    color: #222;
+}
+
+.horizontal-bar {
+    height: 0px;
+    background-color: red;
+    margin: 0;
+    position: relative;    
+}
+
+.horizontal-bar.active {
+    height: 4px;
+    /* border-top-right-radius: 4px; */
+    /* border-top-left-radius: 4px; */
+}
+
+.vertical-bar {
+    height: 0px;
+    width: 4px;
+    margin: 0 auto;
+    background-color: red;
+}
+
+.vertical-bar.active {
+    height: 12px;
+}
