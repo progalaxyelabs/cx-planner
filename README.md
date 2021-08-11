@@ -1,7 +1,7 @@
 
-# tree-graph
+# CX Planner
 
-App development flow chart builder
+Customer eXperience Planner for Apps
 
 
 ## Purpose
