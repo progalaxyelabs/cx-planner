@@ -8,13 +8,19 @@ var App = (function () {
     let root = null
     let main = null
     let activeMobileWindow = null;
+    let userStepTemplate = null
 
     let init = function () {
         if (isInitialized) {
             return
         }
 
+        userStepTemplate = document.getElementById('user-step')
+            .content.firstElementChild;
+
         buildTree()
+
+        bindUiActions()
 
         console.log('initialized')
         isInitialized = true
@@ -24,69 +30,48 @@ var App = (function () {
     function buildTree() {
         main = document.getElementById('main')
 
-        const children = createChildrenWindow()
+        const children = document.createElement('div')
+        children.className = 'children'
         main.appendChild(children)
 
         root = createNode()
+
         children.appendChild(root)
     }
 
-    function createNode() {
-        const node = document.createElement('div')
-        node.className = 'node'
+    function on(name, selector, callback) {
+        main.addEventListener(name, (e) => {
+            const element = e.target
+            if (element.matches(selector)) {
+                return callback(e, element)
+            }
 
-        const vBarToParent = createVerticalBar()
-        vBarToParent.classList.add('to-parent')
-        node.appendChild(vBarToParent)
-
-        node.appendChild(createMessageWindow())
-
-        node.appendChild(createMobileWindow())
-
-        const vBarToChildren = createVerticalBar()
-        vBarToChildren.classList.add('to-children')
-        node.appendChild(vBarToChildren)
-
-        node.appendChild(createHorizontalBar())
-
-        node.appendChild(createChildrenWindow())
-
-        return node
+            const ancestorElement = element.closest(selector)
+            if(ancestorElement !== null) {
+                return callback(e, ancestorElement)
+            }
+        })
     }
 
-    function createMobileWindow() {
-        const mobileWindow = document.createElement('div')
-        mobileWindow.className = 'mobile-window'
-
-        const mobileView = document.createElement('div')
-        mobileView.className = 'mobile-view'
-        mobileWindow.appendChild(mobileView)
-
-        const mobileButtons = document.createElement('div')
-        mobileButtons.className = 'mobile-buttons'
-        mobileWindow.appendChild(mobileButtons)
-
-        const createNodeButton = document.createElement('button')
-        createNodeButton.appendChild(document.createTextNode('A'))
-        createNodeButton.className = 'mobile-button add-action'
-        mobileButtons.appendChild(createNodeButton)
-
-        createNodeButton.addEventListener('click', (e) => {
-            const button = e.target
-            const thisNode = button.closest('.node')
+    function bindUiActions() {
+        on('click', '.mobile-button.add-action', (event, target) => {            
+            const thisNode = target.closest('.node')
             createChildNodeTo(thisNode)
-        })
-
-        mobileWindow.addEventListener('click', (e) => {
+        })     
+        
+        on('click', '.mobile-window', (event, target) => {
             if (activeMobileWindow) {
                 activeMobileWindow.classList.remove('active')
             }
-            mobileWindow.classList.add('active')
-            activeMobileWindow = mobileWindow
+            
+            target.classList.add('active')
+            activeMobileWindow = target
         })
-
-        return mobileWindow
     }
+
+    function createNode() {
+        return userStepTemplate.cloneNode(true)
+    }    
 
     function createChildNodeTo(thisNode) {
         const childNode = createNode()
@@ -101,35 +86,6 @@ var App = (function () {
             .classList.add('active')
 
         updateHorizontalBarWidths(thisNode)
-    }
-
-    function createMessageWindow() {
-        const messageWindow = document.createElement('div')
-        messageWindow.className = 'message-window'
-        messageWindow.contentEditable = true
-
-        return messageWindow
-    }
-
-    function createVerticalBar() {
-        const v = document.createElement('div')
-        v.className = 'vertical-bar'
-
-        return v
-    }
-
-    function createHorizontalBar() {
-        const h = document.createElement('div')
-        h.className = 'horizontal-bar'
-
-        return h
-    }
-
-    function createChildrenWindow() {
-        const children = document.createElement('div')
-        children.className = 'children'
-
-        return children
     }
 
     function updateHorizontalBarWidths(node) {

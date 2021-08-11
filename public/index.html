@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,11 +8,29 @@
     <title>Tree Graph</title>
     <link rel="stylesheet" href="/styles.css" />
 </head>
+
 <body>
     <div id="main">
-        
+
     </div>
+
+    <template id="user-step">
+        <div class="node">
+            <div class="vertical-bar to-parent"></div>
+            <div class="message-window" contenteditable="true"></div>
+            <div class="mobile-window">
+                <div class="mobile-view"></div>
+                <div class="mobile-buttons">
+                    <button class="mobile-button add-action">A</button>
+                </div>
+            </div>
+            <div class="vertical-bar to-children"></div>
+            <div class="horizontal-bar"></div>
+            <div class="children"></div>
+        </div>
+    </template>
 
     <script src="/main.js"></script>
 </body>
+
 </html>
