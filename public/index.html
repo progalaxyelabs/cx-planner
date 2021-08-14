@@ -5,28 +5,49 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tree Graph</title>
+    <title>Cx Planner</title>
     <link rel="stylesheet" href="/styles.css" />
 </head>
 
 <body>
-    <div id="main">
+    <nav>
+        <div class="brand">
+            <a href="/">
+                <img class="brand-logo" src="/img/favicon-32x32.png" />
+                <span class="brand-name">Cx Planner</span>
+            </a>
+        </div>
 
+    </nav>
+    <div id="main-wrap">
+        <div id="main">
+
+        </div>
     </div>
 
     <template id="user-step">
-        <div class="node">
-            <div class="vertical-bar to-parent"></div>
-            <div class="message-window" contenteditable="true"></div>
-            <div class="mobile-window">
-                <div class="mobile-view"></div>
-                <div class="mobile-buttons">
-                    <button class="mobile-button add-action">A</button>
+        <div class="step">
+            <div class="vertical-bar to-previous"></div>
+            <div class="step-content">
+                <div class="explanation" contenteditable="true">
+                    <div>Click here to edit this text:</div>
+                    <div><br /></div>
+                    <div>below is the preview after user...</div>
+                </div>
+                <div class="visual">
+                    <div class="preview"></div>
+                    <div class="step-toolbar">
+                        <button class="step-toolbar-button add-next-step" title="Add next step">A</button>
+                        <button class="step-toolbar-button show-next-steps" title="Show next steps">S</button>
+                        <button class="step-toolbar-button hide-next-steps" title="Hide next steps">H</button>
+                        <button class="step-toolbar-button remove-self"
+                            title="Remove this step and all subsequent steps below">R</button>
+                    </div>
                 </div>
             </div>
-            <div class="vertical-bar to-children"></div>
+            <div class="vertical-bar to-next"></div>
             <div class="horizontal-bar"></div>
-            <div class="children"></div>
+            <div class="next-steps"></div>
         </div>
     </template>
 

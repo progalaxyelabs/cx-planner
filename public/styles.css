@@ -9,27 +9,80 @@ body {
     font-size: 16px;
 }
 
-#main {
-    padding: 12px;
+body {
+    display: inline-block;
+    min-width: 100%;
+    /* background-color: #fffef2; */
 }
 
-.node {
+nav {
+    background-color: #fff;
+    box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.5);
+}
+
+nav a {
+    text-decoration: none;
+}
+
+
+.brand a {
+    display: inline-flex;
+    align-items: center;
+    padding: 0px 16px;
+}
+
+.brand-logo {
+    padding: 5px;
+    background-color: #fff200;
+    border-radius: 8px;
+}
+
+.brand-name {
+    padding: 15px 10px;
+    display: inline-block;
+    font-size: 1.5rem;
+    color: orangered;
+    line-height: 1;
+}
+
+#main-wrap {
+    padding: 16px;
+}
+
+#main {
+    text-align: center;
+}
+
+.step {
     margin: 0 auto;
     padding: 0 4px;
     /* border: 1px solid blue; */
+    display: inline-block;
 }
 
-.children {
+#main > .step > .step-content > .visual > .step-toolbar .step-toolbar-button.remove-self {
+    display: none;
+}
+
+.step-content {
+    width: 200px;
+    margin: 0 auto;
+}
+
+.next-steps {
     display: flex;
     flex-wrap: nowrap;
     padding: 0 8px;
     padding: 0;
-    /* border: 1px solid brown; */
+    margin-left: -4px;
+    margin-right: -4px;
 }
 
-.mobile-window {
-    width: 200px;
-    height: 320px;
+.explanation:focus {
+    border: 1px solid green;
+}
+
+.visual {
     border: 1px solid #aaa;
     border-radius: 4px;
 
@@ -39,24 +92,29 @@ body {
     flex-direction: column;
 }
 
-.mobile-window.active {
+.visual.active {
     box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
 }
 
-.mobile-view {
-    flex: 1;
+.preview {
+    height: 280px;
+    border-bottom: 1px solid #aaa;
+    display: block;
 }
 
-.mobile-buttons {
+.preview.hide {
+    display: none;
+}
+
+.step-toolbar {
     flex: 0 0 36px;
     height: 36px;
-    padding: 4px;
-    border-top: 1px solid #aaa;
+    padding: 4px;    
     display: flex;
     align-items: center;
 }
 
-.mobile-button {
+.step-toolbar-button {
     line-height: 1;
     background: #eee;
     border: 1px solid transparent;
@@ -70,7 +128,7 @@ body {
     cursor: pointer;
 }
 
-.message-window {
+.explanation {
     width: 200px;
     min-height: 50px;
     border: 1px solid #aaa;
@@ -89,10 +147,10 @@ body {
     height: 0px;
     background-color: red;
     margin: 0;
-    position: relative;    
+    position: relative;
 }
 
-.horizontal-bar.active {
+.horizontal-bar.show {
     height: 4px;
     /* border-top-right-radius: 4px; */
     /* border-top-left-radius: 4px; */
@@ -100,11 +158,56 @@ body {
 
 .vertical-bar {
     height: 0px;
-    width: 4px;
+    width: 0px;
     margin: 0 auto;
     background-color: red;
 }
 
-.vertical-bar.active {
+.vertical-bar.show {
     height: 12px;
+    width: 4px;
+}
+
+.vertical-bar.to-next.show {
+    height: 18px;
+}
+
+.step-toolbar-button.remove-self {
+    margin-left: auto;
+    color: red;
+}
+
+.add-next-step {
+    margin-right: 5px;
+}
+
+.show-next-steps {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+.hide-next-steps {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    margin-left: 2px;
+}
+
+.next-steps.show {
+    display: flex;
+}
+
+.next-steps.hide {
+    display: none;
+}
+
+.step-toolbar-button.show-next-steps,
+.step-toolbar-button.hide-next-steps {
+    pointer-events: none;
+    color: #999;
+}
+
+.step-toolbar-button.show-next-steps.active,
+.step-toolbar-button.hide-next-steps.active {
+    pointer-events: initial;
+    color: initial;
 }
