@@ -18,12 +18,17 @@ body {
 nav {
     background-color: #fff;
     box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
 }
 
 nav a {
     text-decoration: none;
 }
 
+.brand {
+    background-color: #f4f4f4;
+}
 
 .brand a {
     display: inline-flex;
@@ -109,7 +114,7 @@ nav a {
 .step-toolbar {
     flex: 0 0 36px;
     height: 36px;
-    padding: 4px;    
+    padding: 4px;
     display: flex;
     align-items: center;
 }
@@ -212,8 +217,33 @@ nav a {
     color: initial;
 }
 
-
 .step.highlight > .step-content > .explanation,
 .step.highlight > .step-content > .visual {
-    box-shadow: 1px 1px 5px rgba(0,0,0,0.5);
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
+}
+
+.nav-toolbar {
+    display: flex;
+    align-items: center;
+}
+
+#main.no-preview .preview {
+    display: none;
+}
+
+.nav-toolbar a {
+    color: blue;
+    text-decoration: none;
+    text-transform: uppercase;    
+    padding: 8px 12px;
+    border-radius: 4px;
+    margin: 0 8px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.nav-toolbar a:focus,
+.nav-toolbar a:hover,
+.nav-toolbar a:visited,
+.nav-toolbar a:active {
+    color: blue;
 }
