@@ -141,11 +141,29 @@ nav a {
 
     margin: 0 auto 12px auto;
 
-    padding: 8px;
+    padding: 8px 8px 24px 8px;
     font-family: Verdana, Geneva, sans-serif;
     font-size: 0.8rem;
     line-height: 1.5;
     color: #222;
+
+    position: relative;
+}
+
+.explanation::after {
+    position: absolute;
+    content: attr(data-before);
+    bottom: -8px;
+    right: 4px;
+    min-width: 44px;
+    min-height: 24px;
+    background-color: pink;
+    border-radius: 3px 3px 3px 3px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    line-height: 1;
 }
 
 .horizontal-bar {
@@ -234,7 +252,7 @@ nav a {
 .nav-toolbar a {
     color: blue;
     text-decoration: none;
-    text-transform: uppercase;    
+    text-transform: uppercase;
     padding: 8px 12px;
     border-radius: 4px;
     margin: 0 8px;

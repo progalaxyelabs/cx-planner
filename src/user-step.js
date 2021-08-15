@@ -118,6 +118,9 @@ class Explanation extends UIObject {
 
         this.element.tabIndex = Explanation.tabIndex
         Explanation.tabIndex++
+
+        this.element.setAttribute('data-before', UserStep.stepCount)
+        UserStep.stepCount++
     }
 }
 
@@ -323,6 +326,7 @@ export class UserStep extends UIObject {
 
     static paddingX = 4
     static initialWidth = 208
+    static stepCount = 0
 
     static stepHighlighter = (function () {
         /** @type {UserStep} [highlighted] */
