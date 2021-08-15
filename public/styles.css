@@ -211,3 +211,9 @@ nav a {
     pointer-events: initial;
     color: initial;
 }
+
+
+.step.highlight > .step-content > .explanation,
+.step.highlight > .step-content > .visual {
+    box-shadow: 1px 1px 5px rgba(0,0,0,0.5);
+}

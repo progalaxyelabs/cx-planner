@@ -323,6 +323,27 @@ export class UserStep extends UIObject {
     static paddingX = 4
     static initialWidth = 208
 
+    static stepHighlighter = (function () {
+        /** @type {UserStep} [highlighted] */
+        let highlighted = null
+
+        let highlight = (step) => {
+            if(highlighted) {
+                remove(highlighted)
+            }
+            add(step)
+        }
+        let remove = (step) => {
+            step.element.classList.remove('highlight')
+            highlighted = null
+        }
+        let add = (step)  => {
+            step.element.classList.add('highlight')
+            highlighted = step
+        }
+        return { highlight}
+    })()
+
     /** @param {UserStep} [_parent] */
     constructor(_parent) {
         super(_parent)
@@ -338,6 +359,11 @@ export class UserStep extends UIObject {
         this.nextSteps = new NextSteps(this)
 
         this.width = UserStep.initialWidth
+
+        this.element.addEventListener('click', (e) => {
+            UserStep.stepHighlighter.highlight(this)
+            e.stopPropagation()
+        })
     }
 
     setParent(parent) {
