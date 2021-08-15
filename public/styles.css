@@ -139,8 +139,6 @@ nav a {
     border: 1px solid #aaa;
     border-radius: 4px;
 
-    margin: 0 auto 12px auto;
-
     padding: 8px 8px 24px 8px;
     font-family: Verdana, Geneva, sans-serif;
     font-size: 0.8rem;
@@ -264,4 +262,13 @@ nav a {
 .nav-toolbar a:visited,
 .nav-toolbar a:active {
     color: blue;
+}
+
+
+#main.no-step-toolbar .step-toolbar {
+    display: none;
+}
+
+#main.no-step-toolbar.no-preview .visual {
+    display: none;
 }

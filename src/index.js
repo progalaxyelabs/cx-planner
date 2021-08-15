@@ -37,12 +37,27 @@ var App = (function () {
             let showPreview = tpb.getAttribute('data-preview')
             if(showPreview === 'on') {
                 main.classList.add('no-preview')
-                tpb.innerHTML = 'Show  Preview'
+                tpb.innerHTML = 'Show  Previews'
                 tpb.setAttribute('data-preview', 'off')
             } else {
                 main.classList.remove('no-preview')
-                tpb.innerHTML = 'Hide  Preview'
+                tpb.innerHTML = 'Hide  Previews'
                 tpb.setAttribute('data-preview', 'on')
+            }
+        })
+
+        const tstb = document.getElementById('toggle-step-toolbar')        
+        tstb.addEventListener('click', function(e) {
+            e.preventDefault()
+            let showPreview = tstb.getAttribute('data-step-toolbar')
+            if(showPreview === 'on') {
+                main.classList.add('no-step-toolbar')
+                tstb.innerHTML = 'Show  Options'
+                tstb.setAttribute('data-step-toolbar', 'off')
+            } else {
+                main.classList.remove('no-step-toolbar')
+                tstb.innerHTML = 'Hide  Options'
+                tstb.setAttribute('data-step-toolbar', 'on')
             }
         })
     }
