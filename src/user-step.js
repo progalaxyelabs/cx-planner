@@ -117,7 +117,7 @@ class Explanation extends UIObject {
             querySelector('.explanation')
 
         this.element.tabIndex = Explanation.tabIndex
-        Explanation.tabIndex++        
+        Explanation.tabIndex++
     }
 }
 
@@ -304,6 +304,7 @@ class NextSteps extends UIObject {
     }
 
     remove(indexToRemove) {
+        UserStep.stepHighlighter.unHighlight(this.userSteps[indexToRemove])
         this.userSteps[indexToRemove].destroy()
         this.userSteps.splice(indexToRemove, 1)
     }
@@ -328,20 +329,29 @@ export class UserStep extends UIObject {
         let highlighted = null
 
         let highlight = (step) => {
-            if(highlighted) {
+            if (highlighted) {
                 remove(highlighted)
             }
             add(step)
         }
+
+        let unHighlight = (step) => {
+            if(highlighted === step) {
+                remove(highlighted)                
+            }
+        }
+
         let remove = (step) => {
             step.element.classList.remove('highlight')
             highlighted = null
         }
-        let add = (step)  => {
+
+        let add = (step) => {
             step.element.classList.add('highlight')
             highlighted = step
         }
-        return { highlight}
+
+        return { highlight, unHighlight }
     })()
 
     /** @param {UserStep} [_parent] */
@@ -361,7 +371,9 @@ export class UserStep extends UIObject {
         this.width = UserStep.initialWidth
 
         this.element.addEventListener('click', (e) => {
-            UserStep.stepHighlighter.highlight(this)
+            if (this.element) {
+                UserStep.stepHighlighter.highlight(this)
+            }
             e.stopPropagation()
         })
     }
@@ -421,7 +433,7 @@ export class UserStep extends UIObject {
         // getting everything you need from this step
         // before removing it.
         // once gone, it's gone forever
-        this.nextSteps.remove(indexToRemove)
+        this.nextSteps.remove(indexToRemove)        
 
         // resize at the end
         this.resize()
