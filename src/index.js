@@ -1,5 +1,6 @@
 import firebase from "firebase/app";
 import "firebase/analytics";
+import { Alert } from 'bootstrap';
 
 import { UserStep } from './user-step'
 

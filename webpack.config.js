@@ -6,8 +6,8 @@ module.exports = {
     mode: 'production', // "production" | "development" | "none"
     entry: {
         files: [
-            path.resolve(__dirname, './src/index.js'),
-            path.resolve(__dirname, './src/styles.scss')
+            './src/index.js',
+            './src/styles.scss'
         ]
     },
     plugins: [
@@ -25,7 +25,7 @@ module.exports = {
     ],
     output: {
         filename: 'scripts.js',
-        path: path.resolve(__dirname, './public'),
+        path: path.resolve(__dirname, 'public')
     },
     module: {
         rules: [
@@ -34,17 +34,20 @@ module.exports = {
                 use: [
                     MiniCssExtractPlugin.loader,
                     'css-loader',
+                    "postcss-loader",
+                    'resolve-url-loader',
                     {
                         loader: 'sass-loader',
                         options: {
+                            sourceMap: true,
                             implementation: require('sass'),
                             sassOptions: {
-
+                                indentedSyntax: false
                             }
                         }
                     }
                 ]
-            },
+            }
         ]
     },
     watch: false,

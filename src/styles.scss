@@ -1,4 +1,5 @@
-
+@use "bootstrap-icons/font/bootstrap-icons";
+@use "bootstrap/dist/css/bootstrap";
 
 * {
     box-sizing: border-box;
@@ -265,7 +266,6 @@ nav a {
 .nav-toolbar a:active {
     color: blue;
 }
-
 
 #main.no-step-toolbar .step-toolbar {
     display: none;

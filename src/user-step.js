@@ -340,8 +340,8 @@ export class UserStep extends UIObject {
         }
 
         let unHighlight = (step) => {
-            if(highlighted === step) {
-                remove(highlighted)                
+            if (highlighted === step) {
+                remove(highlighted)
             }
         }
 
@@ -437,7 +437,7 @@ export class UserStep extends UIObject {
         // getting everything you need from this step
         // before removing it.
         // once gone, it's gone forever
-        this.nextSteps.remove(indexToRemove)        
+        this.nextSteps.remove(indexToRemove)
 
         // resize at the end
         this.resize()
