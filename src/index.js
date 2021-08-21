@@ -1,6 +1,15 @@
+import firebase from "firebase/app";
+import "firebase/analytics";
+
 import { UserStep } from './user-step'
 
 window.addEventListener('DOMContentLoaded', (e) => {
+    const firebaseConfig = {
+        // ...
+    };
+
+    firebase.initializeApp(firebaseConfig);
+
     App.init()
 })
 
@@ -25,17 +34,17 @@ var App = (function () {
 
     function buildTree() {
         main = document.getElementById('main')
-                
+
         root = new UserStep(null)
         root.createIn('#main')
-    }    
+    }
 
-    function bindUiActions () {
-        const tpb = document.getElementById('toggle-preview')        
-        tpb.addEventListener('click', function(e) {
+    function bindUiActions() {
+        const tpb = document.getElementById('toggle-preview')
+        tpb.addEventListener('click', function (e) {
             e.preventDefault()
             let showPreview = tpb.getAttribute('data-preview')
-            if(showPreview === 'on') {
+            if (showPreview === 'on') {
                 main.classList.add('no-preview')
                 tpb.innerHTML = 'Show  Previews'
                 tpb.setAttribute('data-preview', 'off')
@@ -46,11 +55,11 @@ var App = (function () {
             }
         })
 
-        const tstb = document.getElementById('toggle-step-toolbar')        
-        tstb.addEventListener('click', function(e) {
+        const tstb = document.getElementById('toggle-step-toolbar')
+        tstb.addEventListener('click', function (e) {
             e.preventDefault()
             let showPreview = tstb.getAttribute('data-step-toolbar')
-            if(showPreview === 'on') {
+            if (showPreview === 'on') {
                 main.classList.add('no-step-toolbar')
                 tstb.innerHTML = 'Show  Options'
                 tstb.setAttribute('data-step-toolbar', 'off')

@@ -1,5 +1,5 @@
 {
-  "name": "tree-graph",
+  "name": "cx-planner",
   "version": "1.0.0",
   "description": "",
   "private": true,
@@ -10,6 +10,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "firebase": "^8.9.1",
     "three": "^0.131.3"
   },
   "devDependencies": {
