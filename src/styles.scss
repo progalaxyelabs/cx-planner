@@ -205,17 +205,6 @@ nav a {
     margin-right: 5px;
 }
 
-.show-next-steps {
-    border-top-right-radius: 0;
-    border-bottom-right-radius: 0;
-}
-
-.hide-next-steps {
-    border-top-left-radius: 0;
-    border-bottom-left-radius: 0;
-    margin-left: 2px;
-}
-
 .next-steps.show {
     display: flex;
 }
@@ -228,12 +217,14 @@ nav a {
 .step-toolbar-button.hide-next-steps {
     pointer-events: none;
     color: #999;
+    display: none;
 }
 
 .step-toolbar-button.show-next-steps.active,
 .step-toolbar-button.hide-next-steps.active {
     pointer-events: initial;
     color: initial;
+    display: initial;
 }
 
 .step.highlight > .step-content > .explanation,
