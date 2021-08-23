@@ -406,7 +406,7 @@ export class UserStep extends UIObject {
         // resize at the end
         this.resize()
 
-        this.explanation.focus()
+        // this.explanation.focus()
     }
 
     showNextSteps() {
