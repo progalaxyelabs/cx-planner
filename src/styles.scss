@@ -1,7 +1,9 @@
 @use "bootstrap-icons/font/bootstrap-icons";
 @use "bootstrap/dist/css/bootstrap";
+// @use "cropperjs/dist/cropper";
 
 $bar-color: grey;
+$preview-height: 306px;
 
 * {
     box-sizing: border-box;
@@ -125,7 +127,7 @@ nav a {
 }
 
 .preview {
-    height: 280px;
+    height: $preview-height;
     border-bottom: 1px solid #aaa;
     display: block;
     overflow: hidden;
@@ -160,6 +162,10 @@ nav a {
     width: 24px;
     height: 24px;
     cursor: pointer;
+    margin-right: 8px;
+}
+.step-toolbar-button:last-child {
+    margin-right: 0;
 }
 
 .explanation {
@@ -225,10 +231,6 @@ nav a {
 .step-toolbar-button.remove-self {
     margin-left: auto;
     color: grey;
-}
-
-.add-next-step {
-    margin-right: 5px;
 }
 
 .next-steps.show {
@@ -313,4 +315,69 @@ footer {
     flex-direction: column;
     text-align: center;
     align-items: center;
+}
+
+#change-preview-modal .modal-footer {
+    justify-content: space-evenly;
+}
+
+#preview-image-preview-wrap {
+    width: 200px;
+    height: $preview-height;
+    margin: 0 auto;
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
+}
+
+#preview-image-preview {
+    display: block;
+    max-width: 100%;
+    margin: 0 auto;
+}
+
+#button-preview-browse {
+    position: relative;
+    display: inline-block;
+}
+
+#input-preview-browse {
+    position: absolute;
+    font-size: 50px;
+    opacity: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    left: 0;
+}
+
+#precheck-preview-browse {
+    visibility: hidden;
+}
+
+#precheck-preview-browse.ok,
+#precheck-preview-browse.notok {
+    visibility: visible;
+}
+
+#precheck-preview-browse.ok {
+    color: green;
+}
+
+#precheck-preview-browse.ok > .icon-ok {
+    display: initial;
+}
+
+#precheck-preview-browse.ok > .icon-notok {
+    display: none;
+}
+
+#precheck-preview-browse.notok > .icon-ok {
+    display: none;
+}
+
+#precheck-preview-browse.notok > .icon-notok {
+    display: initial;
+}
+
+#precheck-preview-browse.notok {
+    color: red;
 }

@@ -128,13 +128,24 @@ const DEFAULT_PREVIEW_IMAGE = '/img/sample-198x280.jpg'
 class Preview extends UIObject {
     /** @param {UserStep} [_parent] */
     constructor(_parent) {
-        super(_parent)        
+        super(_parent)
 
         this.element = _parent.element.
             querySelector('.preview')
 
-        let img = this.element.querySelector('img')
-        img.src = DEFAULT_PREVIEW_IMAGE
+        this.img = this.element.querySelector('img')
+        this.img.src = DEFAULT_PREVIEW_IMAGE
+    }
+
+    setUrl(url) {
+        if(url === '') {
+            url = DEFAULT_PREVIEW_IMAGE
+        }
+        this.img.src = url
+    }
+
+    getUrl() {
+        return this.img.src
     }
 }
 
@@ -210,6 +221,28 @@ class STBRemoveSelf extends StepToolbarButton {
     }
 }
 
+class STBChangePreview extends StepToolbarButton {
+    /** @param {UserStep} [_parent] */
+    constructor(_parent) {
+        super(_parent)
+
+        this.element = _parent.element.
+            querySelector('.change-preview')
+
+        this.element.addEventListener('click', (e) => {
+            const event = new CustomEvent('show-change-preview-modal', {
+                detail: {
+                    url: this.parent.getPreviewUrl(),
+                    callback: (url) => {
+                        this.parent.setPreviewUrl(url)
+                    }
+                }
+            })
+            document.dispatchEvent(event)
+        })
+    }
+}
+
 class StepToolbar extends UIObject {
     /** @param {UserStep} [_parent] */
     constructor(_parent) {
@@ -222,6 +255,7 @@ class StepToolbar extends UIObject {
         this.showNextSteps = new STBShowNextSteps(_parent)
         this.hideNextSteps = new STBHideNextSteps(_parent)
         this.removeSelf = new STBRemoveSelf(_parent)
+        this.changePreview = new STBChangePreview(_parent)
     }
 
     destroy() {
@@ -390,10 +424,9 @@ export class UserStep extends UIObject {
         throw 'not implemented'
     }
 
-    createIn(selector) {
-        const el = document.querySelector(selector)
-        if (el) {
-            el.appendChild(this.element)
+    createIn(element) {
+        if (element) {
+            element.appendChild(this.element)
         }
     }
 
@@ -444,12 +477,12 @@ export class UserStep extends UIObject {
         this.nextSteps.remove(indexToRemove)
 
         // hide next-steps button if none left    
-        if(this.nextSteps.getCount() === 0) {
+        if (this.nextSteps.getCount() === 0) {
             this.visual.stepToolbar.showNextSteps.deActivate()
-            this.visual.stepToolbar.hideNextSteps.deActivate()   
+            this.visual.stepToolbar.hideNextSteps.deActivate()
             this.visual.stepToolbar.showNextSteps.hide()
             this.visual.stepToolbar.hideNextSteps.hide()
-        }        
+        }
 
         // resize at the end
         this.resize()
@@ -482,6 +515,14 @@ export class UserStep extends UIObject {
         }
 
         this.parent.resize()
+    }
+
+    getPreviewUrl() {
+        return this.visual.preview.getUrl()
+    }
+
+    setPreviewUrl(url) {
+        this.visual.preview.setUrl(url)
     }
 
     destroy() {
