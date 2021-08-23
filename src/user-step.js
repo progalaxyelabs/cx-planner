@@ -443,6 +443,14 @@ export class UserStep extends UIObject {
         // once gone, it's gone forever
         this.nextSteps.remove(indexToRemove)
 
+        // hide next-steps button if none left    
+        if(this.nextSteps.getCount() === 0) {
+            this.visual.stepToolbar.showNextSteps.deActivate()
+            this.visual.stepToolbar.hideNextSteps.deActivate()   
+            this.visual.stepToolbar.showNextSteps.hide()
+            this.visual.stepToolbar.hideNextSteps.hide()
+        }        
+
         // resize at the end
         this.resize()
     }
