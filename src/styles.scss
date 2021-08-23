@@ -14,7 +14,7 @@ body {
 }
 
 body {
-    display: inline-block;
+    // display: inline-block;
     // min-width: 100%;
     /* background-color: #fffef2; */
     overflow: scroll;
@@ -74,6 +74,7 @@ nav a {
 #main-wrap {
     padding: 16px;
     min-width: 100vw;
+    display: inline-block;
 }
 
 #main {
