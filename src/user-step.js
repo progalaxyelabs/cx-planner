@@ -124,13 +124,17 @@ class Explanation extends UIObject {
     }
 }
 
+const DEFAULT_PREVIEW_IMAGE = '/img/sample-198x280.jpg'
 class Preview extends UIObject {
     /** @param {UserStep} [_parent] */
     constructor(_parent) {
-        super(_parent)
+        super(_parent)        
 
         this.element = _parent.element.
             querySelector('.preview')
+
+        let img = this.element.querySelector('img')
+        img.src = DEFAULT_PREVIEW_IMAGE
     }
 }
 
