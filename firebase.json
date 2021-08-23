@@ -8,6 +8,14 @@
     ],
     "rewrites": [
       {
+        "source": "/terms-and-conditions",
+        "destination": "/terms-and-conditions.html"
+      },
+      {
+        "source": "/privacy",
+        "destination": "/privacy.html"
+      },      
+      {
         "source": "**",
         "destination": "/index.html"
       }

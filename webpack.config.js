@@ -16,9 +16,7 @@ module.exports = {
         }),
         new CopyWebpackPlugin({
             patterns: [
-                './src/index.html',
-                './src/favicon.ico',
-                './src/site.webmanifest',
+                { from: '*.(html|ico|webmanifest)', context: path.resolve(__dirname, 'src') },
                 { from: 'img/**/*', context: path.resolve(__dirname, 'src') }
             ]
         })
