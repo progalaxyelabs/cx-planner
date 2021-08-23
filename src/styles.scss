@@ -1,6 +1,8 @@
 @use "bootstrap-icons/font/bootstrap-icons";
 @use "bootstrap/dist/css/bootstrap";
 
+$bar-color: grey;
+
 * {
     box-sizing: border-box;
 }
@@ -13,7 +15,7 @@ body {
 
 body {
     display: inline-block;
-    min-width: 100%;
+    // min-width: 100%;
     /* background-color: #fffef2; */
     overflow: scroll;
     padding-top: 60px;
@@ -22,14 +24,23 @@ body {
 nav {
     background-color: #fff;
     box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.5);
+    // display: flex;
+    // align-items: center;
+    // position: fixed;
+    // top: 0;
+    // left: 0;
+    // right: 0;
+    // z-index: 1000;
+    // background-color: white;
+}
+
+nav.navbar {
+    padding: 0;
+}
+
+.navbar-brand {
     display: flex;
     align-items: center;
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 1000;
-    background-color: white;
 }
 
 nav a {
@@ -62,6 +73,7 @@ nav a {
 
 #main-wrap {
     padding: 16px;
+    min-width: 100vw;
 }
 
 #main {
@@ -115,6 +127,12 @@ nav a {
     height: 280px;
     border-bottom: 1px solid #aaa;
     display: block;
+    overflow: hidden;
+}
+
+.preview > img {
+    width: 100%;
+    border: none;
 }
 
 .preview.hide {
@@ -176,22 +194,22 @@ nav a {
 
 .horizontal-bar {
     height: 0px;
-    background-color: red;
+    background-color: $bar-color;
     margin: 0;
     position: relative;
 }
 
 .horizontal-bar.show {
     height: 4px;
-    border-top-right-radius: 2px;
-    border-top-left-radius: 2px;
+    // border-top-right-radius: 2px;
+    // border-top-left-radius: 2px;
 }
 
 .vertical-bar {
     height: 0px;
     width: 0px;
     margin: 0 auto;
-    background-color: red;
+    background-color: $bar-color;
 }
 
 .vertical-bar.show {
@@ -205,7 +223,7 @@ nav a {
 
 .step-toolbar-button.remove-self {
     margin-left: auto;
-    color: red;
+    color: grey;
 }
 
 .add-next-step {
@@ -256,6 +274,10 @@ nav a {
     border-radius: 4px;
     margin: 0 8px;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.navbar-collapse a {
+    text-transform: uppercase;
 }
 
 .nav-toolbar a:focus,
