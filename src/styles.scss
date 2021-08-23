@@ -295,3 +295,22 @@ nav a {
 #main.no-step-toolbar.no-preview .visual {
     display: none;
 }
+
+footer {
+    min-height: 100px;
+    background: #eaeaea;
+    padding-bottom: 24px;
+}
+
+.footer-links {
+    display: flex;
+    justify-content: space-evenly;
+    padding: 15px 25px;
+}
+
+.footer-copyright {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+}
