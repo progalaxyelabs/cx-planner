@@ -25,6 +25,8 @@ var PreviewImageSelection = (function () {
     let precheckElement = null
     let precheckTextElement = null
     let uploadElement = null
+    const allowedExt = ['png', 'jpg', 'jpeg']  
+    const allowedSize = 50
 
     let init = function () {
         if (isInitialized) {
@@ -70,31 +72,32 @@ var PreviewImageSelection = (function () {
         })
 
         fileInputElement.addEventListener('change', (e) => {
-            if (fileInputElement.files.length > 0) {
-                const fsize = fileInputElement.files.item(0).size
-                const fbytes = Math.round(fsize / 1024)
+
+            if (fileInputElement.files.length === 0) {
+                return true
+            }
+
+            const fsize = fileInputElement.files.item(0).size
+            const fbytes = Math.round(fsize / 1024)
+            const isValidFileSize = fbytes <= allowedSize            
+
+            const url = fileInputElement.value
+            const ext = url.substring(url.lastIndexOf('.') + 1).toLowerCase()            
+            const isValidFileExt = allowedExt.includes(ext)
+            
+            if(isValidFileExt) {
                 precheckTextElement.innerHTML = (fbytes + ' kB / 50 kB')
-                if (fbytes > 50) {
-                    precheckNotOk()
-                } else {
-                    const url = fileInputElement.value
-                    const ext = url.substring(url.lastIndexOf('.') + 1).toLowerCase()
-                    console.log('url, ext', url, ext)
-                    if ((ext === 'png') || (ext === 'jpg') || (ext === 'jpeg')) {
-                        console.log(URL.createObjectURL(fileInputElement.files.item(0)))
-                        imgElement.src = URL.createObjectURL(fileInputElement.files.item(0))
-                        imgElement.onload = function() {
-                            URL.revokeObjectURL(this.src)
-                        }
-
-                        precheckOk()
-                    } else {
-                        fileInputElement.value = ''
-
-                        precheckNotOk()
-                    }
-
-                }
+                displayPreview()
+            } else {
+                precheckTextElement.innerHTML = (filenameFromUrl(url) + ' is not a valid image file')
+                fileInputElement.value = ''
+                clearPreview()
+            }
+            
+            if(isValidFileExt && isValidFileSize) {
+                precheckOk()
+            } else {
+                precheckNotOk()
             }
         })
 
@@ -112,7 +115,23 @@ var PreviewImageSelection = (function () {
     function precheckNotOk() {
         precheckElement.classList.remove('ok')
         precheckElement.classList.add('notok')
-        uploadElement.disabled = true
+        uploadElement.disabled = true        
+    }
+
+    function displayPreview() {
+        console.log(URL.createObjectURL(fileInputElement.files.item(0)))
+        imgElement.src = URL.createObjectURL(fileInputElement.files.item(0))
+        imgElement.onload = function () {
+            URL.revokeObjectURL(this.src)
+        }
+    }
+
+    function clearPreview() {
+        imgElement.src = ''
+    }
+
+    function filenameFromUrl(url) {
+        return url.split('\\').pop().split('/').pop();
     }
 
     // function initCropper() {
